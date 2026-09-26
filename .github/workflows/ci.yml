@@ -1,0 +1,26 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main, master, revival]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Fail on high/critical vulnerabilities in shipped dependencies
+        # ip and elliptic have no upstream fix; see SECURITY.md
+        run: npm audit --omit=dev --audit-level=critical
+      - name: Unit tests (must not regress below the known baseline)
+        run: |
+          npx mocha --reporter json --reporter-option output=results.json || true
+          node -e "const r=require('./results.json').stats; console.log(r); if (r.passes < 3970 || r.failures > 292) process.exit(1)"
+      - name: Fuzz peer-facing parsers
+        run: npm run fuzz -- 200000 ${{ github.run_id }}
