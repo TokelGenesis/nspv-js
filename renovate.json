@@ -14,8 +14,7 @@
   "assignees": [
     "thecomputergenie"
   ],
-  "automerge": true,
-  "automergeType": "pr",
+  "automerge": false,
   "updateLockFiles": true,
   "additionalBranchPrefix": "{{parentDir}}-",
   "packageRules": [
@@ -37,6 +36,16 @@
         "patch",
         "pin",
         "digest"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "dependencyDashboardApproval": true,
+      "labels": [
+        "major",
+        "needs-review"
       ]
     }
   ]
