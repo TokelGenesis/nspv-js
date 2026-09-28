@@ -524,7 +524,9 @@ module.exports = {
     },
     coin: coins.ZEC,
     komodoAssetNet: true,
-    protocolVersion: 170010,
+    // tokeld 0.3.4 refuses peers below 170011 (MIN_PEER_PROTO_VERSION), so 170010 only ever
+    // worked with the old bitcore-based node.
+    protocolVersion: 170011,
     messages: kmdmessages.kmdMessages,
     magic:  0x86c2fdd0,
   
@@ -533,8 +535,9 @@ module.exports = {
       //'ec2-18-189-25-123.us-east-2.compute.amazonaws.com:29404'
     ],
     staticPeers: [
-      '192.99.71.125:29404',
-      '135.125.204.169:29404',
+      // 192.99.71.125 and 135.125.204.169 are offline since the 2026 stall.
+      '94.130.38.173:29404',
+      '136.243.144.90:29404',
       ////'18.190.86.67:29404'
       // 'localhost:29404',
       //'18.189.25.123:29404'
