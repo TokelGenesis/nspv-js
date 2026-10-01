@@ -1,4 +1,4 @@
-> ## Tokel Genesis — Γένεσις｜創世紀・新篇章
+> ## Tokel Genesis｜Γένεσις｜創世紀・新篇章
 >
 > Tokel Genesis 是 TokelPlatform 的社群延續。原團隊的貢獻永遠保留在歷史中；所有舊錢包、代幣、餘額完全相容，鏈上資料一點都沒變。
 >
